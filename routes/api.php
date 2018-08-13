@@ -13,6 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', [
+	'namespace' => 'App\Http\Controllers\Api',
+    'middlewate' => ['serializer:array'], // serializer:array 减少一次返回数据的嵌套
+], function($api) {
+	$api->get('version', function() {
+        return response('this is xkeyi api version v1');
+    });
+
+    $api->group([
+    	'middleware' => 'api.throttle', // 调用频率限制
+    	'limit' => config('api.rate_limits.access.limit'), // 次数
+    	'expires' => config('api.rate_limits.access.expires'), // 分钟
+    ], function($api) {
+    	/** 游客可以访问的接口 */
+        // 分类列表
+        $api->get('categories', 'CategoriesController@index')
+        	->name('api.categories.index');
+    });
 });
