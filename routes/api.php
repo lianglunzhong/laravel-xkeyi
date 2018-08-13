@@ -32,5 +32,9 @@ $api->version('v1', [
         // 分类列表
         $api->get('categories', 'CategoriesController@index')
         	->name('api.categories.index');
+
+        // 文章列表
+        $api->get('articles', 'ArticlesController@index')
+            ->name('api.articles.index');
     });
 });
