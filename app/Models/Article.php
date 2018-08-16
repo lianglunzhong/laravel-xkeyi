@@ -25,9 +25,14 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public function getImageUrlAttribute()
     {
-    	if (Str::startsWith($this->attributes['iamge'], ['http://', 'https://'])) {
+    	if (Str::startsWith($this->attributes['image'], ['http://', 'https://'])) {
     		return $this->attributes['image'];
     	}
 

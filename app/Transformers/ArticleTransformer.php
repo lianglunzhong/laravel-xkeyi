@@ -19,6 +19,8 @@ class ArticleTransformer extends TransformerAbstract
 			'id' => $article->id,
 			'title' => $article->title,
 			'body' => $article->body,
+			'image' => $article->image,
+			'image_url' => $article->image_url,
 			'user_id' => $article->user_id,
 			'category_id' => $article->category_id,
 			'view_count' => $article->view_count,
