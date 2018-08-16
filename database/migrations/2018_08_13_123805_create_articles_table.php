@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title')->index()->comment('标题');
             $table->longText('body')->comment('内容');
+            $table->string('image')->comment('文章封面图');
             $table->boolean('visible')->default(true);
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');

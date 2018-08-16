@@ -17,7 +17,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
 	'namespace' => 'App\Http\Controllers\Api',
-    'middlewate' => ['serializer:array'], // serializer:array 减少一次返回数据的嵌套
+    'middleware' => ['serializer:array'], // serializer:array 减少一次返回数据的嵌套
 ], function($api) {
 	$api->get('version', function() {
         return response('this is xkeyi api version v1');

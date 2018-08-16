@@ -20,6 +20,7 @@ class ArticlesController extends Controller
 
     	$articles = $query->paginate(10);
 
+        // 在返回的 articels 中获取其关联的 user 和 category 时, 只需要在 transformer 中引入，Dingo Api 会自动帮处理掉 N+ 1 的问题
     	return $this->response->paginator($articles, new ArticleTransformer());
     }
 }

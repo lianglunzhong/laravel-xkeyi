@@ -13,4 +13,9 @@ class Category extends Model
     protected $casts = [
     	'visiable' => 'boolean',
     ];
+
+    public function articles()
+    {
+    	return $this->hasMany(Article::class);
+    }
 }
