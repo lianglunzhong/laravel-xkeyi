@@ -17,7 +17,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
 	'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array'], // serializer:array 减少一次返回数据的嵌套
+    'middleware' => ['serializer:array', 'bindings'], // serializer:array 减少一次返回数据的嵌套; bindings 把dingo api路由的参数自动绑定到模型上
 ], function($api) {
 	$api->get('version', function() {
         return response('this is xkeyi api version v1');
@@ -36,5 +36,9 @@ $api->version('v1', [
         // 文章列表
         $api->get('articles', 'ArticlesController@index')
             ->name('api.articles.index');
+
+        // 文章详情
+        $api->get('articles/{article}', 'ArticlesController@show')
+            ->name('api.articles.show');
     });
 });

@@ -12,7 +12,7 @@ class Reply extends Model
 
     protected $casts = [
     	'visible' => 'boolean',
-    	'is_delete' => 'boolean',
+    	'is_deleted' => 'boolean',
     ];
 
     public function user()

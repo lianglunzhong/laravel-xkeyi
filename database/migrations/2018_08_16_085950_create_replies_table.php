@@ -21,7 +21,7 @@ class CreateRepliesTable extends Migration
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->text('content')->comment('评论内容');
             $table->text('reply_content')->nullable()->comment('作者回复内容');
-            $table->boolean('is_delete')->default(false)->comment('用户是否删除');
+            $table->boolean('is_deleted')->default(false)->comment('用户是否删除');
             $table->boolean('visible')->default(true)->comment('管理员控制是否可见');
             $table->timestamps();
         });

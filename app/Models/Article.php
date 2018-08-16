@@ -30,6 +30,14 @@ class Article extends Model
         return $this->hasMany(Reply::class);
     }
 
+    public function availReplies()
+    {
+        return $this->replies()
+                    ->where('is_deleted', false)
+                    ->where('visible', true)
+                    ->get();
+    }
+
     public function getImageUrlAttribute()
     {
     	if (Str::startsWith($this->attributes['image'], ['http://', 'https://'])) {
