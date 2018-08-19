@@ -40,5 +40,36 @@ $api->version('v1', [
         // 文章详情
         $api->get('articles/{article}', 'ArticlesController@show')
             ->name('api.articles.show');
+
+        // 小程序登录
+        $api->post('weapp/authorizations', 'AuthorizationsController@weappStore')
+            ->name('api.weapp.authorizations.store');
+
+        // 刷新token
+        $api->put('authorizations/current', 'AuthorizationsController@update')
+            ->name('api.authorizations.update');
+
+        /** 需要 token 验证的接口 */
+        $api->group(['middleware' => 'api.auth'], function($api) {
+            // 当前登录用户信息
+            $api->get('user', 'UsersController@me')
+                ->name('api.user.show');
+
+            // put:替换某个资源，需提供完整的资源信息 patch: 部分修改资源，提供部分资源信息
+            // 更新用户信息
+            $api->patch('user', 'UsersController@update')
+                ->name('api.user.update');
+            // 因为微信小程序的网络请求是不支持 PATCH 方法的
+            $api->put('user', 'UsersController@update')
+                ->name('api.user.update');
+
+            // 发布留言
+            $api->post('articles/{article}/replies', 'RepliesController@store')
+                ->name('api.articles.replies.store');
+
+            // 删除留言
+            $api->delete('articles/{article}/replies/{reply}', 'RepliesController@destroy')
+                ->name('api.articles.replies.destroy');
+        });
     });
 });

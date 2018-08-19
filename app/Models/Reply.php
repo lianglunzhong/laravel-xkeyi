@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     protected $fillable = [
-    	'content', 'reply_content',
+    	'content', 'reply_content', 'form_id', 'is_deleted'
     ];
 
     protected $casts = [

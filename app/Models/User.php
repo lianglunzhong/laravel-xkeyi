@@ -5,6 +5,7 @@ namespace App\Models;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -26,7 +27,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -46,5 +47,14 @@ class User extends Authenticatable implements JWTSubject
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        if (Str::startsWith($this->attributes['avatar'], ['http://', 'https://'])) {
+            return $this->attributes['avatar'];
+        }
+
+        return \Storage::disk('public')->url($this->attributes['avatar']);
     }
 }

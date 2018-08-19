@@ -29,6 +29,14 @@ class ArticlesController extends Controller
         if (!$article->visible) {
             return $this->response->errorBadRequest();
         }
+
+        // 同步有效评论数（待后台操作写好之后可删除此步骤）
+        $avial_count = $article->availReplies()->count();
+        $article->update([
+            'reply_count' => $avial_count,
+        ]);
+
+        $article->increment('view_count', 1);
         
         return $this->response->item($article, new ArticleTransformer);
     }

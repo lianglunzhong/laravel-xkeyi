@@ -13,6 +13,7 @@ class UserTransformer extends TransformerAbstract
 			'id' => $user->id,
 			'name' => $user->name,
 			'avatar' => $user->avatar,
+			'avatar_url' => $user->avatar_url,
 			'introduction' => $user->introduction,
 		];
 	}

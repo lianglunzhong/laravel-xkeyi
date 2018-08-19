@@ -35,6 +35,7 @@ class Article extends Model
         return $this->replies()
                     ->where('is_deleted', false)
                     ->where('visible', true)
+                    ->orderBy('id', 'desc')
                     ->get();
     }
 

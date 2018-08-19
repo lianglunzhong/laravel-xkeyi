@@ -11,7 +11,8 @@ class ArticleTransformer extends TransformerAbstract
 	protected $availableIncludes = [
 		'user',
 		'category',
-		'reply',
+		'replies',
+		'availReplies'
 	];
 
 	public function transform(Article $article)
@@ -44,14 +45,19 @@ class ArticleTransformer extends TransformerAbstract
 		return $this->item($article->category, new CategoryTransformer());
 	}
 
-	public function includeReply(Article $article)
+	public function includeReplies(Article $article)
 	{
 		// $replies = $article->replies()
 		// 				->where('is_deleted', false)
 		// 				->where('visible', true)
 		// 				->get();
-		$replies = $article->availReplies();
+		// $replies = $article->availReplies();
 
-		return $this->collection($replies, new ReplyTransFormer());
+		return $this->collection($article->replies(), new ReplyTransFormer());
+	}
+
+	public function includeAvailReplies(Article $article)
+	{
+		return $this->collection($article->availReplies(), new ReplyTransFormer());
 	}
 }
