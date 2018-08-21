@@ -16,7 +16,8 @@ class ArticlesController extends Controller
     		$query->where('category_id', $category_id);
     	}
 
-    	$query->where('visible', true);
+    	$query->where('visible', true)
+            ->orderBy('created_at', 'desc');
 
     	$articles = $query->paginate(10);
 

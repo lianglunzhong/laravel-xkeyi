@@ -12,4 +12,11 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    // 分类
+    $router->resource('categories', 'CategoriesController');
+    // 文章
+    $router->resource('articles', 'ArticlesController');
+    // 留言
+    $router->resource('replies', 'RepliesController');
+
 });
