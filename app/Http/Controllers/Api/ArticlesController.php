@@ -41,4 +41,13 @@ class ArticlesController extends Controller
         
         return $this->response->item($article, new ArticleTransformer);
     }
+
+    public function aboutMe()
+    {
+        $articles = Article::query()
+                        ->whereIn('id', [1, 2])
+                        ->get();
+
+        return $this->response->collection($articles, new ArticleTransformer());
+    }
 }

@@ -37,6 +37,10 @@ $api->version('v1', [
         $api->get('articles', 'ArticlesController@index')
             ->name('api.articles.index');
 
+        // 获取 about me 页面的两篇文章
+        $api->get('article/about_me', 'ArticlesController@aboutMe')
+            ->name('api.articel.about_me');
+
         // 文章详情
         $api->get('articles/{article}', 'ArticlesController@show')
             ->name('api.articles.show');
