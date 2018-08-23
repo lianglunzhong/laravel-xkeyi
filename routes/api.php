@@ -19,10 +19,6 @@ $api->version('v1', [
 	'namespace' => 'App\Http\Controllers\Api',
     'middleware' => ['serializer:array', 'bindings'], // serializer:array 减少一次返回数据的嵌套; bindings 把dingo api路由的参数自动绑定到模型上
 ], function($api) {
-	$api->get('version', function() {
-        return response('this is xkeyi api version v1');
-    });
-
     $api->group([
     	'middleware' => 'api.throttle', // 调用频率限制
     	'limit' => config('api.rate_limits.access.limit'), // 次数
