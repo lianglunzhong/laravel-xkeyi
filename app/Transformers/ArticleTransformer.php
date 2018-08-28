@@ -53,11 +53,11 @@ class ArticleTransformer extends TransformerAbstract
 		// 				->get();
 		// $replies = $article->availReplies();
 
-		return $this->collection($article->replies(), new ReplyTransFormer());
+		return $this->collection($article->replies(), new ReplyTransformer());
 	}
 
 	public function includeAvailReplies(Article $article)
 	{
-		return $this->collection($article->availReplies(), new ReplyTransFormer());
+		return $this->collection($article->availReplies(), new ReplyTransformer());
 	}
 }
