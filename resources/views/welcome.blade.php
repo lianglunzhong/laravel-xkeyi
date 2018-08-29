@@ -22,6 +22,20 @@
             width: 100%;
             overflow: hidden;
         }
+        .content-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content-info p {
+            font-size: 16px;
+        }
+        .content-img img {
+            width: 250px;
+            height: 250px;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -36,6 +50,23 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="content-box">
+                        <div class="content-info">
+                            <p>本人太懒，还没有写完... </p>
+                            <P>不过，可以扫码体验小程序，效果更棒哦</P>
+                        </div>
+                        <div class="content-img">
+                            <img src="{{ asset('images/static/xiaochengxu.jpg') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="container">
                 <div style="margin:0 auto; padding:20px 0;">
